@@ -10,10 +10,10 @@ import { DEFAULT_SORT_BY, DEFAULT_SORT_DIRECTION } from '../../data';
 import useBreakpointDetect from '../../hooks/useBreakpointDetect';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import { Project } from '../../types';
-import { prepareQueryString } from '../../utils/prepareQueryString';
+import prepareQueryString from '../../utils/prepareQueryString';
 import Image from '../common/Image';
+import MaturityBadge from './badges/MaturityBadge';
 import HoverableItem from './HoverableItem';
-import MaturityBadge from './MaturityBadge';
 import RoundScore from './RoundScore';
 import styles from './Searchbar.module.css';
 

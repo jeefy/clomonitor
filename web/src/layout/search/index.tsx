@@ -10,7 +10,7 @@ import { AppContext, updateLimit, updateSort } from '../../context/AppContextPro
 import useScrollRestorationFix from '../../hooks/useScrollRestorationFix';
 import { Project, SearchFiltersURL, SortBy, SortDirection } from '../../types';
 import buildSearchParams from '../../utils/buildSearchParams';
-import { prepareQueryString } from '../../utils/prepareQueryString';
+import prepareQueryString from '../../utils/prepareQueryString';
 import Loading from '../common/Loading';
 import NoData from '../common/NoData';
 import Pagination from '../common/Pagination';

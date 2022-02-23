@@ -19,7 +19,9 @@ interface Props {
   scrollIntoView: (id?: string) => void;
 }
 
-// Sort by score global and alphabetically
+// Sort by repo kind, score global and alphabetically
+// IMPORTANT: primary repo is sorted first due to repo kind is sorted alphabetically,
+// if we add a new kind we need to revisit this
 const sortRepos = (repos: Repository[]): Repository[] => {
   return orderBy(repos, ['kind', 'score.global', 'name'], ['asc', 'desc', 'asc']);
 };
@@ -67,7 +69,11 @@ const RepositoriesList = (props: Props) => {
 
       {repositories.map((repo: Repository) => {
         return (
-          <div key={`repo_${repo.repository_id}`} className="mb-4 mb-md-5 position-relative">
+          <div
+            data-testid="repository-info"
+            key={`repo_${repo.repository_id}`}
+            className="mb-4 mb-md-5 position-relative"
+          >
             <div>
               <div className={`position-absolute ${styles.headerAnchor}`} id={repo.name} />
             </div>

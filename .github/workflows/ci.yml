@@ -41,6 +41,33 @@ jobs:
         with:
           command: test
 
+  tests-frontend:
+    runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: --max_old_space_size=4096
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: ./web/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install dependencies
+        working-directory: ./web
+        run: yarn install
+      - name: Run prettier
+        working-directory: ./web
+        run: yarn format:diff
+      - name: Run eslint
+        working-directory: ./web
+        run: yarn lint
+      - name: Run frontend tests
+        working-directory: ./web
+        run: yarn test --watchAll=false --passWithNoTests --verbose --maxWorkers=4
+
   build-dbmigrator-image:
     if: github.ref == 'refs/heads/main'
     needs:

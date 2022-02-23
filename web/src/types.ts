@@ -60,7 +60,7 @@ export interface CoreReport {
 
 export type Score = {
   [key in ScoreType]: number;
-} & { scoreKind: ScoreKind };
+} & { score_kind: ScoreKind };
 
 export interface FiltersSection {
   name: string;
